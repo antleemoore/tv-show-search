@@ -17,6 +17,29 @@ body{
         display: grid;
     }
 }
+.title, .white, .subtitle{
+    color: white ;
+}
 h3{
     text-align: center;
+}
+html, .navbar{
+    background-color: rgb(44, 44, 44);
+}
+.columns{
+    flex-wrap: wrap;
+}
+.card{
+    height: 100% !important;
+    align-items: center;
+    display: grid;
+    text-align: center;
+    background-color: #3298dc;
+}
+figure{
+    display: flex;
+    justify-content: center;
+}
+hr{
+    background-color: #3298dc;
 }

@@ -18,27 +18,60 @@ form.addEventListener('submit', async (e) => {
     }
     const res = await axios.get(`http://api.tvmaze.com/search/shows`, config)
     resultsHeader = document.createElement('h3');
-    resultsHeader.classList.add('subtitle', 'has-text-weight-bold')
+    resultsHeader.classList.add('subtitle', 'has-text-weight-bold', 'white')
     resultsHeader.append(`Showing ${res.data.length} results for "${searchTerm}"`);
     document.body.append(resultsHeader);
     console.log(res);
-    grid.classList.add('columns');
+    grid.classList.add('columns', 'is-desktop');
+    document.body.append(grid);
     makeCards(res.data);
     form.elements.query.value = '';
 })
 
 const makeCards = (shows) => {
     for (let result of shows) {
-        if (result.show.image) {
-            const img = document.createElement('img');
-            img.src = result.show.image.medium;
-            document.body.append(img);
-        }
+        const card = addCard(result);
+        grid.append(card);
     }
 }
 
+const addCard = (show) => {
+    const cardHolder = document.createElement('div');
+    cardHolder.classList.add('column', 'is-one-fifth');
+    
+    const card = document.createElement('div');
+    cardHolder.append(card);
+    card.classList.add('card');
+    
+    const cardImage = document.createElement('div');
+    card.append(cardImage);
+    
+    console.log(show.show.image);
+    if (show.show.image != null) {
+        const img = document.createElement('img');
+        img.src = show.show.image.medium;
+        cardImage.classList.add('card-image');
+        const figure = document.createElement('figure');
+        cardImage.append(figure);
+        figure.append(img);
+        const cardContent = document.createElement('div');
+        cardContent.classList.add('card-content','has-text-weight-bold', 'subtitle');
+        cardContent.append(show.show.name);
+        card.append(cardContent);
+    }
+    else {
+        console.log("here");
+        const showName = document.createElement('h4');
+        showName.classList.add('subtitle', 'has-text-weight-bold', 'is-1');
+        showName.append(show.show.name);
+        cardImage.append(showName);
+    }
+
+    return cardHolder;
+}
+
 const clearSearch = () => {
-    const allImages = document.querySelectorAll('img');
+    const allImages = document.querySelectorAll('.column');
     for (let img of allImages) {
         img.parentNode.removeChild(img);
     }
