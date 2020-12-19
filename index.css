@@ -1,0 +1,22 @@
+body{
+    margin: 5%;
+}
+.navbar-end{
+    margin-left: 0;
+}
+.navbar-brand{
+    justify-content: center;
+    align-items: center;
+}
+.navbar{
+    justify-content: center;
+    display: flex;
+}
+@media(max-width: 765px){
+    .navbar{
+        display: grid;
+    }
+}
+h3{
+    text-align: center;
+}
