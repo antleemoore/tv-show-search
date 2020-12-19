@@ -48,9 +48,14 @@ const addCard = (show) => {
     
     const cardImage = document.createElement('div');
     card.append(cardImage);
-    if (show.show.image != null) {
+    
         const img = document.createElement('img');
+    if (show.show.image != null) {
         img.src = show.show.image.medium;
+    }
+    else {
+        img.src = './plainblack.jpg';
+    }
         cardImage.classList.add('card-image');
         const figure = document.createElement('figure');
         cardImage.append(figure);
@@ -59,13 +64,7 @@ const addCard = (show) => {
         cardContent.classList.add('card-content','has-text-weight-bold', 'subtitle');
         cardContent.append(show.show.name);
         card.append(cardContent);
-    }
-    else {
-        const showName = document.createElement('h4');
-        showName.classList.add('subtitle', 'has-text-weight-bold', 'is-1');
-        showName.append(show.show.name);
-        cardImage.append(showName);
-    }
+
 
     return cardHolder;
 }
