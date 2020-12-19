@@ -9,8 +9,12 @@ const grid = document.createElement('div');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    clearSearch();
     const searchTerm = form.elements.query.value;
+    if (searchTerm === "") {
+        return;
+    }
+    else
+        clearSearch();
     const config = {
         params: {
             q: searchTerm
@@ -19,7 +23,7 @@ form.addEventListener('submit', async (e) => {
     const res = await axios.get(`https://api.tvmaze.com/search/shows`, config)
     resultsHeader = document.createElement('h3');
     resultsHeader.classList.add('subtitle', 'has-text-weight-bold', 'white')
-    resultsHeader.append(`Showing ${res.data.length} results for "${searchTerm}"`);
+    resultsHeader.append(res.data.length === 0 ? `No results found for "${searchTerm}"` : `Showing ${res.data.length} results for "${searchTerm}"`);
     document.body.append(resultsHeader);
     grid.classList.add('columns', 'is-desktop');
     document.body.append(grid);
