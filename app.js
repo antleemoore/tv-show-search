@@ -21,7 +21,6 @@ form.addEventListener('submit', async (e) => {
     resultsHeader.classList.add('subtitle', 'has-text-weight-bold', 'white')
     resultsHeader.append(`Showing ${res.data.length} results for "${searchTerm}"`);
     document.body.append(resultsHeader);
-    console.log(res);
     grid.classList.add('columns', 'is-desktop');
     document.body.append(grid);
     makeCards(res.data);
@@ -45,8 +44,6 @@ const addCard = (show) => {
     
     const cardImage = document.createElement('div');
     card.append(cardImage);
-    
-    console.log(show.show.image);
     if (show.show.image != null) {
         const img = document.createElement('img');
         img.src = show.show.image.medium;
@@ -60,7 +57,6 @@ const addCard = (show) => {
         card.append(cardContent);
     }
     else {
-        console.log("here");
         const showName = document.createElement('h4');
         showName.classList.add('subtitle', 'has-text-weight-bold', 'is-1');
         showName.append(show.show.name);
