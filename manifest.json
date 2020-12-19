@@ -2,7 +2,7 @@
     "name": "TV Show Search",
     "short_name": "TVSearch",
     "description": "An app for finding more information about TV shows",
-    "theme_color": "#000000",
+    "theme_color": "#FFFFFF",
     "icons": [
         {
             "src": "icons/manifest-icon-192.png",

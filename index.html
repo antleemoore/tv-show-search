@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="index.css">
     <link rel="icon" type="image/jpeg" href="searchicon.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="searchicon.png">
+    <link rel="manifest" href="manifest.json">
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
@@ -34,6 +36,11 @@
     
 
     <hr/>
+    <script>
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/service-worker.js');
+      }
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
