@@ -16,7 +16,7 @@ form.addEventListener('submit', async (e) => {
             q: searchTerm
         }
     }
-    const res = await axios.get(`http://api.tvmaze.com/search/shows`, config)
+    const res = await axios.get(`https://api.tvmaze.com/search/shows`, config)
     resultsHeader = document.createElement('h3');
     resultsHeader.classList.add('subtitle', 'has-text-weight-bold', 'white')
     resultsHeader.append(`Showing ${res.data.length} results for "${searchTerm}"`);
