@@ -33,7 +33,7 @@ form.addEventListener('submit', async (e) => {
 
 const makeCards = (shows) => {
     for (let result of shows) {
-        const card = addCard(result);
+        const card = addCard(result.show);
         grid.append(card);
     }
 }
@@ -50,21 +50,41 @@ const addCard = (show) => {
     card.append(cardImage);
     
         const img = document.createElement('img');
-    if (show.show.image != null) {
-        img.src = show.show.image.medium;
+    if (show.image != null) {
+        img.src = show.image.medium;
     }
     else {
         img.src = './plainblack.jpg';
     }
-        cardImage.classList.add('card-image');
-        const figure = document.createElement('figure');
-        cardImage.append(figure);
-        figure.append(img);
-        const cardContent = document.createElement('div');
-        cardContent.classList.add('card-content','has-text-weight-bold', 'subtitle');
-        cardContent.append(show.show.name);
-        card.append(cardContent);
+    cardImage.classList.add('card-image');
+    const figure = document.createElement('figure');
+    cardImage.append(figure);
+    figure.append(img);
+    const cardContent = document.createElement('div');
+    cardContent.classList.add('card-content', 'has-text-weight-bold', 'subtitle');
+    const link = document.createElement('a');
+    const rating = document.createElement('div');
+    rating.id = 'ratingDiv';
+    cardContent.append(show.name);
+    cardContent.append(rating);
+    
+    const linkDiv = document.createElement('div');
+    linkDiv.id = 'linkDiv';
+    if (show.officialSite !== null)
+    {
+        linkDiv.append('Official Site');
+        link.append(linkDiv);
+        link.href = show.officialSite;
+        cardContent.append(link);
+    }
+    else {
+        linkDiv.append('Official Site Unavailable');
+        linkDiv.classList.add('unavailable');
+        cardContent.append(linkDiv);
+    }
+    show.rating.average !== null ? rating.append(`Average Rating: ${show.rating.average}`) : rating.append(`Average Rating: N/A`);
 
+    card.append(cardContent);
 
     return cardHolder;
 }
