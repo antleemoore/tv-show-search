@@ -75,6 +75,8 @@ const addCard = (show) => {
         linkDiv.append('Official Site');
         link.append(linkDiv);
         link.href = show.officialSite;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
         cardContent.append(link);
     }
     else {
